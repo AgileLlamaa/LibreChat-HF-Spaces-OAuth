@@ -60,7 +60,7 @@ jobs:
       # Docker requires image names to be in lowercase
       - name: Set lowercase repository owner
         run: |
-          echo "GITHUB_REPOSITORY_OWNER_LOWERCASE=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+          echo "GITHUB_REPOSITORY_OWNER_LOWERCASE=`echo ${{github.repository_owner}} | tr '[:upper:]' '[:lower:]'`" >> ${GITHUB_ENV}
 
       # Build and push Docker images for each target
       - name: Build and push Docker images
@@ -70,8 +70,8 @@ jobs:
           file: ${{ matrix.file }}
           push: true
           tags: |
-            ghcr.io/${{ GITHUB_REPOSITORY_OWNER_LOWERCASE }}/${{ matrix.image_name }}:${{ github.sha }}
-            ghcr.io/${{ GITHUB_REPOSITORY_OWNER_LOWERCASE }}/${{ matrix.image_name }}:latest
+            ghcr.io/${{ env.GITHUB_REPOSITORY_OWNER_LOWERCASE }}/${{ matrix.image_name }}:${{ github.sha }}
+            ghcr.io/${{ env.GITHUB_REPOSITORY_OWNER_LOWERCASE }}/${{ matrix.image_name }}:latest
           #  ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image_name }}:${{ github.sha }}
           #  ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image_name }}:latest
           platforms: linux/amd64,linux/arm64
