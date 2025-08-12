@@ -15,7 +15,7 @@ const logoutController = async (req, res) => {
     if (
       req.user.openidId != null &&
       isEnabled(process.env.OPENID_USE_END_SESSION_ENDPOINT) &&
-      process.env.OPENID_ISSUER
+      process.env.OPENID_PROVIDER_URL
     ) {
       const openIdConfig = getOpenIdConfig();
       if (!openIdConfig) {

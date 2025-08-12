@@ -13,9 +13,9 @@ afterEach(() => {
   delete process.env.GOOGLE_CLIENT_SECRET;
   delete process.env.FACEBOOK_CLIENT_ID;
   delete process.env.FACEBOOK_CLIENT_SECRET;
-  delete process.env.OPENID_CLIENT_ID;
-  delete process.env.OPENID_CLIENT_SECRET;
-  delete process.env.OPENID_ISSUER;
+  delete process.env.OAUTH_CLIENT_ID;
+  delete process.env.OAUTH_CLIENT_SECRET;
+  delete process.env.OPENID_PROVIDER_URL;
   delete process.env.OPENID_SESSION_SECRET;
   delete process.env.OPENID_BUTTON_LABEL;
   delete process.env.OPENID_AUTO_REDIRECT;
@@ -51,9 +51,9 @@ describe.skip('GET /', () => {
     process.env.GOOGLE_CLIENT_SECRET = 'Test Google Client Secret';
     process.env.FACEBOOK_CLIENT_ID = 'Test Facebook Client Id';
     process.env.FACEBOOK_CLIENT_SECRET = 'Test Facebook Client Secret';
-    process.env.OPENID_CLIENT_ID = 'Test OpenID Id';
-    process.env.OPENID_CLIENT_SECRET = 'Test OpenID Secret';
-    process.env.OPENID_ISSUER = 'Test OpenID Issuer';
+    process.env.OAUTH_CLIENT_ID = 'Test OpenID Id';
+    process.env.OAUTH_CLIENT_SECRET = 'Test OpenID Secret';
+    process.env.OPENID_PROVIDER_URL = 'Test OpenID Issuer';
     process.env.OPENID_SESSION_SECRET = 'Test Secret';
     process.env.OPENID_BUTTON_LABEL = 'Test OpenID';
     process.env.OPENID_AUTH_URL = 'http://test-server.com';
