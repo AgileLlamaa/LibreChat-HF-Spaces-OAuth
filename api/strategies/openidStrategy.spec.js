@@ -114,12 +114,12 @@ describe('setupOpenId', () => {
     jest.clearAllMocks();
 
     // Reset environment variables needed by the strategy
-    process.env.OPENID_ISSUER = 'https://fake-issuer.com';
-    process.env.OPENID_CLIENT_ID = 'fake_client_id';
-    process.env.OPENID_CLIENT_SECRET = 'fake_client_secret';
+    process.env.OPENID_PROVIDER_URL = 'https://fake-issuer.com';
+    process.env.OAUTH_CLIENT_ID = 'fake_client_id';
+    process.env.OAUTH_CLIENT_SECRET = 'fake_client_secret';
     process.env.DOMAIN_SERVER = 'https://example.com';
     process.env.OPENID_CALLBACK_URL = '/callback';
-    process.env.OPENID_SCOPE = 'openid profile email';
+    process.env.OAUTH_SCOPES = 'openid profile email';
     process.env.OPENID_REQUIRED_ROLE = 'requiredRole';
     process.env.OPENID_REQUIRED_ROLE_PARAMETER_PATH = 'roles';
     process.env.OPENID_REQUIRED_ROLE_TOKEN_KIND = 'id';

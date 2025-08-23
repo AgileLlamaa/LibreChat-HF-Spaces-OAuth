@@ -44,9 +44,9 @@ router.get('/', async function (req, res) {
 
   try {
     const isOpenIdEnabled =
-      !!process.env.OPENID_CLIENT_ID &&
-      !!process.env.OPENID_CLIENT_SECRET &&
-      !!process.env.OPENID_ISSUER &&
+      !!process.env.OAUTH_CLIENT_ID &&
+      !!process.env.OAUTH_CLIENT_SECRET &&
+      !!process.env.OPENID_PROVIDER_URL &&
       !!process.env.OPENID_SESSION_SECRET;
 
     const isSamlEnabled =

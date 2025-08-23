@@ -67,10 +67,10 @@ const configureSocialLogins = async (app) => {
     passport.use(appleLogin());
   }
   if (
-    process.env.OPENID_CLIENT_ID &&
-    process.env.OPENID_CLIENT_SECRET &&
-    process.env.OPENID_ISSUER &&
-    process.env.OPENID_SCOPE &&
+    process.env.OAUTH_CLIENT_ID &&
+    process.env.OAUTH_CLIENT_SECRET &&
+    process.env.OPENID_PROVIDER_URL &&
+    process.env.OAUTH_SCOPES &&
     process.env.OPENID_SESSION_SECRET
   ) {
     await configureOpenId(app);
