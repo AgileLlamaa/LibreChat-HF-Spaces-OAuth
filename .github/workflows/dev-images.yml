@@ -45,16 +45,22 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       # Login to Docker Hub
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      # - name: Login to Docker Hub
+      #   uses: docker/login-action@v3
+      #   with:
+      #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+      #     password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       # Prepare the environment
       - name: Prepare environment
         run: |
           cp .env.example .env
+
+      # Set the repository owner in lowercase
+      # Docker requires image names to be in lowercase
+      - name: Set lowercase repository owner
+        run: |
+          echo "GITHUB_REPOSITORY_OWNER_LOWERCASE=`echo ${{github.repository_owner}} | tr '[:upper:]' '[:lower:]'`" >> ${GITHUB_ENV}
 
       # Build and push Docker images for each target
       - name: Build and push Docker images
@@ -64,9 +70,9 @@ jobs:
           file: ${{ matrix.file }}
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/${{ matrix.image_name }}:${{ github.sha }}
-            ghcr.io/${{ github.repository_owner }}/${{ matrix.image_name }}:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image_name }}:${{ github.sha }}
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image_name }}:latest
+            ghcr.io/${{ env.GITHUB_REPOSITORY_OWNER_LOWERCASE }}/${{ matrix.image_name }}:${{ github.sha }}
+            ghcr.io/${{ env.GITHUB_REPOSITORY_OWNER_LOWERCASE }}/${{ matrix.image_name }}:latest
+        #    ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image_name }}:${{ github.sha }}
+        #    ${{ secrets.DOCKERHUB_USERNAME }}/${{ matrix.image_name }}:latest
           platforms: linux/amd64,linux/arm64
           target: ${{ matrix.target }}
